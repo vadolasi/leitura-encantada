@@ -1,5 +1,5 @@
 import { render } from "preact"
-import { Suspense } from "preact"
+import { Suspense } from "preact/compat"
 import { useEffect } from "preact/hooks"
 import { BrowserRouter as Router, useRoutes } from "react-router-dom"
 import "./assets/css/index.css"

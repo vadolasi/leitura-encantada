@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "PatchworkStitchlings";
+  src: url("../fonts/PatchworkStitchlings.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PatchworkStitchlingsColor";
+  src: url("../fonts/PatchworkStitchlingsColor.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.stitchlings {
+  font-family: "PatchworkStitchlings";
+  font-size: 1.5em;
+  color: #000;
+  text-shadow: 0 0 0.2em #fff;
+}
+
+.stitchlings-color {
+  font-family: "PatchworkStitchlingsColor";
+  font-size: 1.5em;
+  color: #000;
+  text-shadow: 0 0 0.2em #fff;
+}

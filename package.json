@@ -1,0 +1,29 @@
+{
+  "name": "abecedario",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@iconify/json": "^2.2.123",
+    "@unocss/reset": "^0.56.4",
+    "daisyui": "^3.8.2",
+    "preact": "^10.16.0",
+    "randomcolor": "^0.6.2",
+    "react-router": "^6.16.0",
+    "react-router-dom": "^6.16.0",
+    "unocss-preset-daisy": "^6.0.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "@types/randomcolor": "^0.5.7",
+    "typescript": "^5.0.2",
+    "unocss": "^0.56.4",
+    "vite": "^4.4.5",
+    "vite-plugin-pages": "^0.31.0"
+  }
+}

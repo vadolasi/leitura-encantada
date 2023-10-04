@@ -14,6 +14,7 @@
     "daisyui": "^3.8.2",
     "preact": "^10.16.0",
     "randomcolor": "^0.6.2",
+    "react-confetti-explosion": "^2.1.2",
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0",
     "unocss-preset-daisy": "^6.0.1"

@@ -33,7 +33,7 @@ export default () => {
   const colors = ["#f93993","#2270bf","#29bbe8","#d1fcab","#e53964","#b0b1f4","#f7d1b7","#b84ce0","#63e290","#fcf999","#ba682a","#36d330","#3784ad","#dd78e2","#dd37d5","#1dce1a","#2b8de2","#f46b69","#5752bf","#5dce44","#13af83","#8094e5","#7f0bc6","#83e5ea","#f2c3b3","#f49acd"]
 
   const playSound = (letter: string) => {
-    const audio = new Audio(letters[alphabet.indexOf(`LETRA ${letter.toUpperCase()}`)])
+    const audio = new Audio(letters[alphabet.indexOf(letter)])
     audio.play()
   }
 

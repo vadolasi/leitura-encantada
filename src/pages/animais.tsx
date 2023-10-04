@@ -59,7 +59,7 @@ export default () => {
   const animais = ["abelha", "cachorro", "cobra", "elefante", "jacare", "leao", "macaco", "ovelha", "papagaio", "pato", "peixe", "vaca"]
   const sons = [somAbelha, somCachorro, somCobra, somElefante, somJacare, somLeao, somMacaco, somOvelha, somPapagaio, somPato, somPeixe, somVaca]
   const imagens = [imagemAbelha, imagemCachorro, imagemCobra, imagemElefante, imagemJacare, imagemLeao, imagemMacaco, imagemOvelha, imagemPapagaio, imagemPato, imagemPeixe, imagemVaca]
-  const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a"]
   const letters = [letterA, letterB, letterC, letterD, letterE, letterF, letterG, letterH, letterI, letterJ, letterK, letterL, letterM, letterN, letterO, letterP, letterQ, letterR, letterS, letterT, letterU, letterV, letterW, letterX, letterY, letterZ]
 
   const [animalAtual, setAnimalAtual] = useState(0)
@@ -173,7 +173,7 @@ export default () => {
         <img src={imagens[animalAtual]} alt={animais[animalAtual]} className="w-3/4 mx-auto" />
         <div className="grid grid-cols-3 p-5 gap-5 mt-10">
           {letras.map(({ letra, cor, corEscura }, index) => (
-            <div key={index} class="card bg-base-100 border rounded-2xl aspect-square border border-b border-b-8 border-1" style={{ backgroundColor: cor, borderColor: corEscura }} onClick={() => selecionarAnimal(letra)}>
+            <div key={index} class="card bg-base-100 border rounded-2xl border border-b border-b-8 border-1" style={{ backgroundColor: cor, borderColor: corEscura }} onClick={() => selecionarAnimal(letra)}>
               <div class="card-body flex items-center justify-center">
                 <h2 class="card-title stitchlings-color text-3xl text-white">{letra}</h2>
               </div>

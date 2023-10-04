@@ -85,6 +85,7 @@ export default () => {
   }
 
   const [isExploding, setIsExploding] = useState(false)
+  const [rerender, setRerender] = useState(0)
 
   const gerarLetras = (animal?: number) => {
     const novoAnimal = animal ?? animalAtual
@@ -134,30 +135,35 @@ export default () => {
   }
 
   const selecionarAnimal = async (letra: string) => {
+    setRerender(Math.random())
     let audio = new Audio(letters[alphabet.indexOf(letra)])
     await playAudio(audio)
     if (letra === animais[animalAtual][0]) {
       setIsExploding(true)
       audio = new Audio(audioCerto)
       await playAudio(audio)
+      setIsExploding(false)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       proximoAnimal()
     } else {
       audio = new Audio(audioErrado)
       audio.play()
     }
-
-    setIsExploding(true)
   }
 
   return (
     <>
-      <div className="fixed bottom-0 left-0">
-        {isExploding && <ConfettiExplosion force={2} duration={5000} onComplete={() => setIsExploding(false)} />}
-      </div>
-      <div className="fixed bottom-0 right-0">
-        {isExploding && <ConfettiExplosion force={2} duration={5000} />}
-      </div>
+      {isExploding && (
+        <>
+          <div className="hidden">{rerender}</div>
+          <div className="fixed bottom-0 left-0">
+            <ConfettiExplosion force={2} duration={5000} />
+          </div>
+          <div className="fixed bottom-0 right-0">
+            <ConfettiExplosion force={2} duration={5000} />
+          </div>
+        </>
+      )}
       <div className="fixed top-0 left-0 right-0 bottom-0 z-50 h-12 bg-base-100 flex items-center px-3">
         <Link to="/">
           <div className="i-icon-park-back text-4xl"></div>

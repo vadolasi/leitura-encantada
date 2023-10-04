@@ -19,7 +19,7 @@ const App = () => {
       audio.play()
     }, false)
     audio.play()
-    })
+    }, { once: true })
   }, [])
 
   return (

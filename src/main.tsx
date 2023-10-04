@@ -11,12 +11,15 @@ import audioFundo from "./assets/audios/fundo.mp3"
 
 const App = () => {
   useEffect(() => {
+    document.addEventListener("click", () => {
     const audio = new Audio(audioFundo)
-
+    audio.volume = 0.5
     audio.addEventListener("ended", () => {
       audio.currentTime = 0
       audio.play()
     }, false)
+    audio.play()
+    })
   }, [])
 
   return (

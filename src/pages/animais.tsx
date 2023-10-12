@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import somAbelha from "../assets/audios/animais/ABELHA.mp3"
 import somCachorro from "../assets/audios/animais/CACHORRO.mp3"
 import somCobra from "../assets/audios/animais/COBRA.mp3"
@@ -54,35 +53,26 @@ import audioErrado from "../assets/audios/errado.mp3"
 import { useEffect, useState } from "preact/hooks"
 import randomColor from "randomcolor"
 import ConfettiExplosion from "react-confetti-explosion"
+import { darkColor } from "../utils"
+import clsx from "clsx"
+import Top from "../components/Top"
 
 export default () => {
   const animais = ["abelha", "cachorro", "cobra", "elefante", "jacare", "leao", "macaco", "ovelha", "papagaio", "pato", "peixe", "vaca"]
   const sons = [somAbelha, somCachorro, somCobra, somElefante, somJacare, somLeao, somMacaco, somOvelha, somPapagaio, somPato, somPeixe, somVaca]
   const imagens = [imagemAbelha, imagemCachorro, imagemCobra, imagemElefante, imagemJacare, imagemLeao, imagemMacaco, imagemOvelha, imagemPapagaio, imagemPato, imagemPeixe, imagemVaca]
-  const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a"]
+  const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   const letters = [letterA, letterB, letterC, letterD, letterE, letterF, letterG, letterH, letterI, letterJ, letterK, letterL, letterM, letterN, letterO, letterP, letterQ, letterR, letterS, letterT, letterU, letterV, letterW, letterX, letterY, letterZ]
 
   const [animalAtual, setAnimalAtual] = useState(0)
   const [animaisUsados, setAnimaisUsados] = useState([0])
   const [letras, setLetras] = useState<{ letra: string, cor: string, corEscura: string }[]>([])
+  const [letrasErradas, setLetrasErradas] = useState<string[]>([])
+  const [first, setFirst] = useState(true)
 
   useEffect(() => {
     proximoAnimal()
   }, [])
-
-  const darkColor = (color: string) => {
-    let c = color.substring(1)
-    let rgb = parseInt(c, 16)
-    let r = (rgb >> 16) & 0xff
-    let g = (rgb >> 8) & 0xff
-    let b = (rgb >> 0) & 0xff
-    r = Math.round(r * 0.8)
-    g = Math.round(g * 0.8)
-    b = Math.round(b * 0.8)
-    let newColor = "rgb(" + r + "," + g + "," + b + ")"
-
-    return newColor
-  }
 
   const [isExploding, setIsExploding] = useState(false)
   const [rerender, setRerender] = useState(0)
@@ -90,8 +80,8 @@ export default () => {
   const gerarLetras = (animal?: number) => {
     const novoAnimal = animal ?? animalAtual
     const letraCerta = animais[novoAnimal][0]
-    const letraErrada1 = alphabet.filter((letra) => letra !== letraCerta)[Math.floor(Math.random() * alphabet.length - 1)]
-    const letraErrada2 = alphabet.filter((letra) => letra !== letraCerta && letra !== letraErrada1)[Math.floor(Math.random() * alphabet.length - 2)]
+    const letraErrada1 = alphabet.filter((letra) => letra !== letraCerta)[Math.floor(Math.random() * (alphabet.length - 1))]
+    const letraErrada2 = alphabet.filter((letra) => letra !== letraCerta && letra !== letraErrada1)[Math.floor(Math.random() * (alphabet.length - 2))]
 
     const letras = [letraCerta, letraErrada1, letraErrada2]
     const cores = randomColor({ count: 3 })
@@ -124,6 +114,9 @@ export default () => {
   const proximoAnimal = () => {
     const novoAnimal = Math.floor(Math.random() * animais.length)
     if (animaisUsados.includes(novoAnimal)) {
+      if (animaisUsados.length === animais.length) {
+        setAnimaisUsados([novoAnimal])
+      }
       proximoAnimal()
       return
     }
@@ -131,7 +124,10 @@ export default () => {
     setAnimaisUsados([...animaisUsados, novoAnimal])
     gerarLetras(novoAnimal)
     const audio = new Audio(sons[novoAnimal])
-    audio.play()
+    setTimeout(() => {
+      audio.play()
+      setFirst(false)
+    }, first ? 2000 : 0)
   }
 
   const selecionarAnimal = async (letra: string) => {
@@ -144,10 +140,12 @@ export default () => {
       await playAudio(audio)
       setIsExploding(false)
       await new Promise((resolve) => setTimeout(resolve, 1000))
+      setLetrasErradas([])
       proximoAnimal()
     } else {
       audio = new Audio(audioErrado)
       audio.play()
+      setLetrasErradas([...letrasErradas, letra])
     }
   }
 
@@ -164,16 +162,16 @@ export default () => {
           </div>
         </>
       )}
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 h-12 bg-base-100 flex items-center px-3">
-        <Link to="/">
-          <div className="i-icon-park-back text-4xl"></div>
-        </Link>
-      </div>
+      <Top />
       <div className="h-screen flex flex-col items-center justify-center">
         <img src={imagens[animalAtual]} alt={animais[animalAtual]} className="w-3/4 mx-auto" />
+        <p className="mt-10 text-xl font-bold text-white" style={{ textShadow: `0 0 20px black` }}>
+          <span className="capitalize">{animais[animalAtual]}{" "}</span>
+          começa com a letra?
+        </p>
         <div className="grid grid-cols-3 p-5 gap-5 mt-10">
           {letras.map(({ letra, cor, corEscura }, index) => (
-            <div key={index} class="card bg-base-100 border rounded-2xl border border-b border-b-8 border-1" style={{ backgroundColor: cor, borderColor: corEscura }} onClick={() => selecionarAnimal(letra)}>
+            <div key={index} class={clsx("card bg-base-100 rounded-2xl border border-b border-b-8 border-1", letrasErradas.includes(letra) && "ring-3 ring-red-600")} style={{ backgroundColor: cor, borderColor: corEscura }} onClick={() => selecionarAnimal(letra)}>
               <div class="card-body flex items-center justify-center">
                 <h2 class="card-title stitchlings-color text-3xl text-white">{letra}</h2>
               </div>

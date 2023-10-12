@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [
     preact(),
     UnoCSS(),
-    Pages({ resolver: "react", extensions: ["tsx"] })
+    Pages({ resolver: "react", extensions: ["tsx"], importMode: "sync" })
   ]
 })

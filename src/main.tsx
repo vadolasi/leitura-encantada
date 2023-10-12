@@ -1,6 +1,6 @@
 import { render } from "preact"
 import { Suspense } from "preact/compat"
-import { useEffect } from "preact/hooks"
+import { useEffect, useRef } from "preact/hooks"
 import { BrowserRouter as Router, useRoutes } from "react-router-dom"
 import "./assets/css/index.css"
 import "@unocss/reset/tailwind.css"
@@ -10,17 +10,20 @@ import routes from "~react-pages"
 import audioFundo from "./assets/audios/fundo.mp3"
 
 const App = () => {
+  const ref = useRef<HTMLAudioElement>(null)
+
   useEffect(() => {
+    const audio = ref.current!
+    audio.volume = 0.4
     document.addEventListener("click", () => {
-    const audio = new Audio(audioFundo)
-    audio.volume = 0.5
-    audio.addEventListener("ended", () => {
-      audio.currentTime = 0
+      if (!audio.paused) return
+      audio.addEventListener("ended", () => {
+        audio.currentTime = 0
+        audio.play()
+      }, false)
       audio.play()
-    }, false)
-    audio.play()
-    }, { once: true })
-  }, [])
+    })
+  }, [ref])
 
   return (
     <Suspense
@@ -30,6 +33,7 @@ const App = () => {
         </div>
       }
     >
+      <audio className="hidden" src={audioFundo} ref={ref}></audio>
       {useRoutes(routes)}
     </Suspense>
   )

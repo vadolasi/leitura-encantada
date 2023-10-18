@@ -11,3 +11,14 @@ export const darkColor = (color: string) => {
 
   return newColor
 }
+
+export const rgbStringToHex = (rgb: string) => {
+  let rgbArr = rgb.split(",")
+  let r = parseInt(rgbArr[0].split("(")[1])
+  let g = parseInt(rgbArr[1])
+  let b = parseInt(rgbArr[2].split(")")[0])
+
+  let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+
+  return hex
+}

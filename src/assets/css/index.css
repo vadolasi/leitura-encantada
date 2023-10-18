@@ -27,3 +27,289 @@ body {
   background-image: url("../images/fundo.jpg");
   background-size: contain;
 }
+
+.figuras {
+	width: 100%;
+	max-width: 400px;
+	height: 200px;
+
+	display: flex;
+	justify-content: space-around;
+
+	grid-area: figuras;
+}
+
+.figuras h3 {
+	color: rgba(255,125,0, 1);
+	line-height: 35px;
+
+	text-align: center;
+}
+
+.figuras p {
+	text-align: left;
+}
+
+.circulo {
+	width: 150px;
+	height: 150px;
+
+	background-color: rgba(0,120,220, 1);
+
+	border-radius:50%;
+}
+
+.coracao {
+  width: 100px;
+  height: 90px;
+
+position: relative;
+
+margin-top: 3%;
+}
+
+.coracao::before {
+  content: "";
+
+  width: 100px;
+  height: 160px;
+
+position: absolute;
+background: rgba(0,120,220, 1);
+  left: 50px;
+  top: 0;
+
+  border-radius: 50px 50px 0 0;
+
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.coracao::after {
+  content: "";
+
+  width: 100px;
+  height: 160px;
+
+position: absolute;
+background: rgba(0,120,220, 1);
+  left: -20px;
+  bottom: 0;
+
+  border-radius: 50px 50px 0 0;
+
+  transform: rotate(45deg);
+  transform-origin: 0 100%;
+}
+
+.estrelaCinco {
+  width: 0px;
+  height: 0px;
+
+position: relative;
+
+  display: block;
+  color: rgba(0,120,220, 1);
+
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid rgba(0,120,220, 1);
+  border-left: 100px solid transparent;
+
+  transform: rotate(35deg);
+
+  margin-top: 20%;
+}
+
+.estrelaCinco::before {
+  content: '';
+
+  width: 0;
+  height: 0;
+
+border-bottom: 80px solid rgba(0,120,220, 1);
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+
+  position: absolute;
+  top: -45px;
+  left: -65px;
+
+  transform: rotate(-35deg);
+}
+
+.estrelaCinco::after {
+  content: '';
+
+  width: 0px;
+  height: 0px;
+
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid rgba(0,120,220, 1);
+  border-left: 100px solid transparent;
+
+position: absolute;
+  top: 3px;
+  left: -105px;
+
+  transform: rotate(-70deg);
+}
+
+.hexagono {
+	width: 100px;
+	height: 65px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: rgba(0,120,220, 1);
+
+	position: relative;
+
+	margin-top: 20%;
+	margin-bottom: 10%;
+}
+
+.hexagono::before {
+	content: '';
+	position: absolute;
+	top: -50px; /* metade do width total */
+	left: 0;
+   	width: 0;
+   	height: 0;
+   	border-left: 50px solid transparent;
+   	border-right: 50px solid transparent;
+   	border-bottom: 50px solid rgba(0,120,220, 1);
+}
+
+.hexagono::after {
+	content: '';
+	position: absolute;
+	bottom: -50px; /* metade do width total */
+	left: 0;
+   	width: 0;
+   	height: 0;
+   	border-left: 50px solid transparent;
+   	border-right: 50px solid transparent;
+   	border-top: 50px solid rgba(0,120,220, 1);
+}
+
+.losangulo {
+	width: 100px;
+	height: 100px;
+
+	background-color: rgba(0,120,220, 1);
+
+	transform:rotate(45deg);
+
+	margin-bottom: 10%;
+	margin-top: 5%;
+}
+
+.octogono {
+	width: 150px;
+    height: 50px;
+
+    background-color: rgba(0,120,220, 1);
+    position: relative;
+
+    margin-top: 20%;
+}
+
+.octogono::after {
+	content: '';
+
+	width: 80px;
+	height: 0px;
+
+	border-top: 0px solid transparent;
+  	border-left: 35px solid transparent;
+  	border-right: 35px solid transparent;
+
+  	/* altura do trapézio superior */
+	border-bottom: 50px solid rgba(0,120,220, 1);
+
+	position: absolute;
+	bottom: 50px; /* igual height do container */
+}
+
+.octogono::before {
+	content: '';
+
+	width: 80px;
+	height: 0px;
+
+	border-top: 0px solid transparent;
+  	border-left: 35px solid transparent;
+  	border-right: 35px solid transparent;
+
+  	/* altura do trapézio inferior */
+	border-bottom: 50px solid rgba(0,120,220, 1);
+
+	position: absolute;
+	top: 50px; /* igual height do container */
+
+	transform: rotate(180deg);
+}
+
+.pentagono {
+	width: 100px;
+  	height: 100px;
+
+	border-top: 50px solid transparent;
+  	border-left: 25px solid transparent;
+  	border-right: 25px solid transparent;
+	border-bottom: 50px solid rgba(0,120,220, 1);
+
+	position: relative;
+}
+
+.pentagono::before {
+    width: 0;
+    height: 0;
+
+	content: "";
+
+    position: absolute;
+
+    bottom: -90px;
+    left: -25px;
+
+	border-top: 40px solid rgba(0,120,220, 1);
+  	border-left: 50px solid transparent;
+  	border-right: 50px solid transparent;
+}
+
+.quadrado {
+	width: 150px;
+	height: 150px;
+
+	background-color: rgba(0,120,220, 1);
+}
+
+.retangulo {
+	width: 100px;
+	height: 70px;
+
+	background-color: rgba(0,120,220, 1);
+}
+
+.trapezio {
+	width: 100px;
+  	height: 100px;
+
+	border-top: 75px solid transparent;
+  	border-left: 25px solid transparent;
+  	border-right: 25px solid transparent;
+	border-bottom: 75px solid rgba(0,120,220, 1);
+}
+
+.triangulo{
+  	width: 0;
+  	height: 0;
+
+	/*border-top: 25px solid transparent;*/
+  	border-left: 25px solid transparent;
+  	border-right: 25px solid transparent;
+  	border-bottom: 25px solid rgba(0,120,220, 1);
+}

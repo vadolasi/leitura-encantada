@@ -2,12 +2,14 @@ import abc from "../assets/images/abc.png"
 import animais from "../assets/images/animais.png"
 import formas from "../assets/images/formas.png"
 import cores from "../assets/images/cores.png"
+import frutas from "../assets/images/frutas.png"
 import Card from "../components/Card"
 import logo from "../assets/images/logo.png"
 import conhecerAlfabeto from "../assets/audios/CONHEÇA O ALFABETO.mp3"
 import conhecerAnimais from "../assets/audios/CONHEÇA OS ANIMAIS.mp3"
 import conhecerFormas from "../assets/audios/CONHEÇA FORMAS GEOMETRICAS.mp3"
 import conhecerCores from "../assets/audios/CONHEÇA AS CORES.mp3"
+import conhecerFrutas from "../assets/audios/CONHEÇA OS TIPOS DE FRUTAS.mp3"
 
 export default () => {
   return (
@@ -18,6 +20,7 @@ export default () => {
         <Card href="/animais" image={animais} title="Animais" color="#023c8c" audio={conhecerAnimais} />
         <Card href="/formas" image={formas} title="Formas" color="#b84ce0" audio={conhecerFormas} />
         <Card href="/cores" image={cores} title="Cores" color="#1dce1a" audio={conhecerCores} />
+        <Card href="/frutas" image={frutas} title="Frutas" color="#2b8de2" audio={conhecerFrutas} />
       </div>
     </div>
   )

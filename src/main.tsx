@@ -21,19 +21,14 @@ const App = () => {
       audio.currentTime = 0
     }
 
-    const isLogin = !!localStorage.getItem("isLogin")
-    const userType = localStorage.getItem("userType")
+    const isLoggedIn = !!localStorage.getItem("isLoggedIn")
 
-    if (pathname !== "/login" && !isLogin) {
+    if (pathname !== "/login" && !isLoggedIn) {
       navigate("/login")
     }
 
-    if (isLogin) {
-      if (userType === "children" && pathname == "/pais") {
-        navigate("/")
-      } else if (userType === "parents" && pathname === "/pais") {
-        navigate("/pais")
-      }
+    if (isLoggedIn) {
+      navigate("/")
     }
   }, [pathname])
 

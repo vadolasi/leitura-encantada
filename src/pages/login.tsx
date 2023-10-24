@@ -6,15 +6,10 @@ export default () => {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  const login = (userType: "parents" | "children") => {
+  const login = () => {
     localStorage.setItem("isLogin", "true")
-    localStorage.setItem("userType", userType)
 
-    if (userType === "parents") {
-      navigate("/pais")
-    } else {
-      navigate("/")
-    }
+    navigate("/")
   }
 
   return (
@@ -34,11 +29,8 @@ export default () => {
         value={password}
         onChange={e => setPassword(e.currentTarget.value)}
       />
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" onClick={() => login("parents")}>
-        Entrar (pais)
-      </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" onClick={() => login("children")}>
-        Entrar (crianças)
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" onClick={() => login()}>
+        Entrar
       </button>
     </div>
   )

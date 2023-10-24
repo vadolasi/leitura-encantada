@@ -26,14 +26,15 @@ const App = () => {
     if (pathname !== "/login" && !isLoggedIn) {
       navigate("/login")
     }
-
-    if (isLoggedIn) {
-      navigate("/")
-    }
   }, [pathname])
 
   useEffect(() => {
     if (pathname === "/login" || pathname === "/pais") return
+    if (!ref.current?.paused) {
+      if (pathname === "/login" || pathname === "/pais") {
+        ref.current?.pause()
+      }
+    }
     const audio = ref.current!
     audio.volume = 0.4
     document.addEventListener("click", () => {

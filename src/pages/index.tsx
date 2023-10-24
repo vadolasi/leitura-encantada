@@ -10,7 +10,6 @@ import conhecerAnimais from "../assets/audios/CONHEÇA OS ANIMAIS.mp3"
 import conhecerFormas from "../assets/audios/CONHEÇA FORMAS GEOMETRICAS.mp3"
 import conhecerCores from "../assets/audios/CONHEÇA AS CORES.mp3"
 import conhecerFrutas from "../assets/audios/CONHEÇA OS TIPOS DE FRUTAS.mp3"
-import { Link } from "react-router-dom"
 
 export default () => {
   return (
@@ -22,9 +21,6 @@ export default () => {
         <Card href="/formas" image={formas} title="Formas" color="#b84ce0" audio={conhecerFormas} />
         <Card href="/cores" image={cores} title="Cores" color="#1dce1a" audio={conhecerCores} />
         <Card href="/frutas" image={frutas} title="Frutas" color="#2b8de2" audio={conhecerFrutas} />
-        <Link to="/pais" class="text-center text-white text-sm font-bold mx-5 bg-blue-600 rounded shadow p-5 col-span-2 mt-20">
-          Dicas para os pais
-        </Link>
       </div>
     </div>
   )

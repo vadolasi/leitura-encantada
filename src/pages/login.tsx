@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks"
 import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
 export default () => {
   const [email, setEmail] = useState("")
@@ -7,13 +8,16 @@ export default () => {
   const navigate = useNavigate()
 
   const login = () => {
-    localStorage.setItem("isLogin", "true")
+    localStorage.setItem("isLoggedIn", "true")
 
     navigate("/")
   }
 
   return (
     <div class="w-full h-screen flex flex-col justify-center items-center">
+      <Link to="/pais" class="text-center text-white text-sm font-bold mx-5 bg-blue-600 rounded shadow p-5 mb-20">
+        Dicas para os pais
+      </Link>
       <h1 class="text-3xl font-bold">Login</h1>
       <input
         type="text"
